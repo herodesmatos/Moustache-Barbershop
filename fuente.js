@@ -1,12 +1,7 @@
 
 const contadorNombres = {}
 
-// se estima que el tiempo que dura un turno son 5 minutos 
-const tiempo = 5
-let cantidadNombre = 0
-
-//Array de objetos
-/*
+// Array de objetos con los servicios ofrecidos y sus duraciones
 const ServiciosOfrecidos = [
     {
         NombreServicio: "facial",
@@ -15,38 +10,58 @@ const ServiciosOfrecidos = [
     {
         NombreServicio: "corte tradicional",
         Duracion: 20,
-    }
+    },
     {
         NombreServicio: "corte + barba",
         Duracion: 25,
     },
     {
-        NombreServicio: "blow out",
+        NombreServicio: "blowout",
         Duracion: 25,
     },
     {
-        NombreServicio: "blow out + barba",
+        NombreServicio: "blowout + barba",
         Duracion: 30,
     },
 ]
-*/
 
-function registrarNombre(nombre) {
-    console.log(nombre + " está en turno")
-    console.log("Servicio: " + servicio)
-    contadorNombres[nombre] = contadorNombres[nombre] + 1
-    cantidadNombre++
+// Función para registrar el nombre y el servicio
+function registrarNombre(nombre, servicio) {
+    console.log(nombre + " ha solicitado " + servicio)
+    if (contadorNombres[nombre]) {
+        contadorNombres[nombre].push(servicio)
+    } else {
+        contadorNombres[nombre] = [servicio]
+    }
 }
 
-// Bucle para solicitar nombres hasta que se ingrese "salir"
+// Función para calcular el tiempo de espera
+function calcularTiempoEspera() {
+    let tiempoEspera = 0
+
+    for (const nombre in contadorNombres) {
+        const serviciosCliente = contadorNombres[nombre]
+        for (const servicio of serviciosCliente) {
+            const servicioEncontrado = ServiciosOfrecidos.find(s => s.NombreServicio === servicio)
+            if (servicioEncontrado) {
+                tiempoEspera = tiempoEspera + servicioEncontrado.Duracion
+
+            }
+        }
+    }
+
+    return tiempoEspera
+}
+
+// Bucle para solicitar nombres y servicios hasta que se ingrese "salir"
 let nombre = ""
 while (nombre !== "salir") {
     nombre = prompt("Ingresa un nombre (o escribe 'salir' para terminar):")
     if (nombre !== "salir") {
-        registrarNombre(nombre)
+        const servicio = prompt("Ingresa el servicio solicitado por " + nombre + ":")
+        registrarNombre(nombre, servicio)
     }
 }
 
-const tiempoEspera = tiempo * cantidadNombre
-
-console.log("El tiempo de espera es:" +  tiempoEspera + " minutos")
+const tiempoEspera = calcularTiempoEspera()
+console.log("El tiempo de espera es: " + tiempoEspera + " minutos")
