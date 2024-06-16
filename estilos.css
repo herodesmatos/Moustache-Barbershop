@@ -1,0 +1,29 @@
+.container-fluid{
+    min-height: 100vh;
+    background-image: linear-gradient(43deg, #dcc4c4 0%, #c35b65 10%, #300f4e 37%, #0c0202 100%);
+}
+
+h2, h4{
+    color: #ffffff;
+}
+
+label{
+    color: #ffffff;
+}
+.uno {
+    border: 3px solid #ffffff;     
+    border-radius: 15px;
+    background-color: #000000;
+}
+
+.uno:hover {
+    background-image: radial-gradient(circle, #000000, #1c0f23);
+    animation-duration: 40s;
+    animation-name: waves;
+    animation-iteration-count: 1;
+}
+
+#listaClientes, #tiempoEspera{
+    color: #ffffff;
+}
+
