@@ -1,0 +1,7 @@
+[
+    { "NombreServicio": "facial", "Duracion": 15 },
+    { "NombreServicio": "corte tradicional", "Duracion": 20 },
+    { "NombreServicio": "corte + barba", "Duracion": 25 },
+    { "NombreServicio": "blowout", "Duracion": 25 },
+    { "NombreServicio": "blowout + barba", "Duracion": 30 }
+]
