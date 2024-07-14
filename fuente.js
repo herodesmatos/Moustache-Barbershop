@@ -16,14 +16,31 @@ document.getElementById('registrar').addEventListener('click', () => {
         registrarNombre(nombre, servicio);
         actualizarListaClientes();
         document.getElementById('nombre').value = "";
+        Swal.fire({
+            title: 'Registro Exitoso',
+            text: `${nombre} ha solicitado ${servicio}`,
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
     } else {
-        alert("Por favor, ingresa un nombre.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Por favor, ingresa un nombre.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     }
 });
 
 document.getElementById('calcular').addEventListener('click', () => {
     const tiempoEspera = calcularTiempoEspera();
     document.getElementById('tiempoEspera').textContent = tiempoEspera + " minutos";
+    Swal.fire({
+        title: 'Tiempo de Espera',
+        text: `El tiempo de espera total es de ${tiempoEspera} minutos`,
+        icon: 'info',
+        confirmButtonText: 'OK'
+    });
 });
 
 function registrarNombre(nombre, servicio) {
@@ -63,4 +80,5 @@ function actualizarListaClientes() {
     }
 }
 
+// Inicializar la lista de clientes al cargar la página
 actualizarListaClientes();

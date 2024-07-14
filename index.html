@@ -11,6 +11,7 @@
     <!-- Bootstrap 5.3 link -->
     <link rel="icon" type="image/png" href="./Multimedia/Mustache5.png">
     <link rel="stylesheet" href="./estilos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script defer src="fuente.js"></script>
     <title>Barbershop</title>
 </head>
@@ -28,15 +29,8 @@
                             <label for="nombre">Nombre:</label><br>
                             <input type="text" id="nombre" placeholder="Ingresa tu nombre"><br><br>
                             
-                            <label for="servicio">Servicio:</label><br>
-                            <select id="servicio">
-                                <option selected disabled>Seleccionar...</option>
-                                <option value="facial">Facial</option>
-                                <option value="corte tradicional">Corte Tradicional</option>
-                                <option value="corte + barba">Corte + Barba</option>
-                                <option value="blowout">Blowout</option>
-                                <option value="blowout + barba">Blowout + Barba</option>
-                            </select><br><br>
+                            <label for="servicio">Servicio:</label>
+                            <select id="servicio"></select>
                             
                             <button id="registrar">Registrar</button>
                             <button id="calcular">Calcular Tiempo de Espera</button>
@@ -56,5 +50,6 @@
         </div>
     </div>
     <!-- Contenindo fin -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
