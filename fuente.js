@@ -1,12 +1,23 @@
-const ServiciosOfrecidos = [
-    { NombreServicio: "facial", Duracion: 15 },
-    { NombreServicio: "corte tradicional", Duracion: 20 },
-    { NombreServicio: "corte + barba", Duracion: 25 },
-    { NombreServicio: "blowout", Duracion: 25 },
-    { NombreServicio: "blowout + barba", Duracion: 30 },
-];
+let ServiciosOfrecidos = [];
 
 const contadorNombres = JSON.parse(sessionStorage.getItem('contadorNombres')) || {};
+
+// Cargar los servicios desde el archivo JSON
+fetch('servicios.json')
+    .then(response => response.json())
+    .then(data => {
+        ServiciosOfrecidos = data;
+        inicializarSelectServicios();
+    })
+    .catch(error => {
+        console.error('Error al cargar el archivo JSON:', error);
+        Swal.fire({
+            title: 'Error',
+            text: 'No se pudieron cargar los servicios.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    });
 
 document.getElementById('registrar').addEventListener('click', () => {
     const nombre = document.getElementById('nombre').value;
@@ -78,6 +89,16 @@ function actualizarListaClientes() {
         li.textContent = `${nombre}: ${contadorNombres[nombre].join(", ")}`;
         listaClientes.appendChild(li);
     }
+}
+
+function inicializarSelectServicios() {
+    const selectServicio = document.getElementById('servicio');
+    ServiciosOfrecidos.forEach(servicio => {
+        const option = document.createElement('option');
+        option.value = servicio.NombreServicio;
+        option.textContent = servicio.NombreServicio;
+        selectServicio.appendChild(option);
+    });
 }
 
 // Inicializar la lista de clientes al cargar la página
